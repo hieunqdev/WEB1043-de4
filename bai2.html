@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ĐĂNG KÝ THÀNH VIÊN</h1>
+    <form action="">
+        <label for="user">User</label>
+        <input type="text" name="user" id="user">
+        <span class="userError"></span>
+        <br>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <span class="emailError"></span>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="pasword" id="password">
+        <span class="passwordError"></span>
+        <br>
+        <label for="yow">Số năm làm việc</label>
+        <input type="text" name="yow" id="yow">
+        <span class="yowError"></span>
+        <br>
+        <input type="button" onclick="mySubmit()" value="GỬI">
+    </form>
+
+    <script>
+        function mySubmit() {
+            
+            var user = document.getElementById('user').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var yow = document.getElementById('yow').value;
+            
+            //check validate
+            if (user == "") {
+                document.getElementsByClassName('userError')[0].innerHTML = 'User không được để trống';
+            }
+            if (email == "") {
+                document.getElementsByClassName('emailError')[0].innerHTML = 'Email không được để trống';
+            }
+            if (password == "") {
+                document.getElementsByClassName('passwordError')[0].innerHTML = 'Password không được để trống';
+            }
+            if (yow == "") {
+                document.getElementsByClassName('yowError')[0].innerHTML = 'Số năm làm việc không được để trống';
+            }
+
+            // check email chua '.', '@'
+            if (!email.includes('.') || !email.includes('@')) {
+                document.getElementsByClassName('emailError')[0].innerHTML = 'Email phải chứa dấu "." và dấu "@"';
+            }
+
+            // check password do dai >= 6 va chua it nhat 1 so
+            var checkPassword = /\d/ //kiem tra pw phai chua it nhat 1 so
+            if (password.length < 6 || !checkPassword.test(password)) {
+                document.getElementsByClassName('passwordError')[0].innerHTML = 'Password phải có độ dài >= 6 kí tự và chứa ít nhất 1 số';
+            }
+
+            // so nam lam viec phai la so
+            if (isNaN(yow)) {
+                document.getElementsByClassName('yowError')[0].innerHTML = 'Số năm làm việc phải là số';
+            }
+        }
+
+    </script>
+</body>
+</html>

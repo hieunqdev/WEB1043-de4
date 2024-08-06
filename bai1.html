@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 1</title>
+</head>
+<style>
+    .slides {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+    <div class="slideshow-container">
+        <img class="slides" src="imgs/dfault-ava.jpg" alt="">
+        <img class="slides" src="imgs/fpt-review.png" alt="">
+        <img class="slides" src="imgs/hieunq23-bhxh.jpg" alt="">
+
+        <div class="control-container">
+            <button onclick="showPrevSlide()">Prev</button>
+            <button onclick="showNextSlide()">Next</button>
+            <button onclick="startSlideshow()">Start</button>
+            <button onclick="stopSlideshow()">Stop</button>
+        </div>
+    </div>
+    
+    <script>
+        // Biến lấy vi trí ảnh hiện tại
+        var slideIndex = 0;
+        var slides = document.getElementsByClassName('slides');
+
+        // Hàm hiển thị ảnh hiện tại:
+            // - ẩn hêt ảnh
+            // - hiển thị ảnh hiện tại slideIndex
+        function showSlides() {
+            for (var i=0; i<slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slides[slideIndex].style.display = 'block';
+        }
+
+        // Biến lưu trạng thái hoạt động ảnh
+        var checkSlideshow;
+        // Bắt đầu slideshow bán tự động
+        function showNextSlide() {
+            // vị trí ảnh tiếp theo 
+            slideIndex += 1;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            showSlides();
+        }
+        
+        function showPrevSlide() {
+            // vị trí ảnh trước đó
+            slideIndex -= 1;
+            if (slideIndex < 0) {
+                slideIndex = 0;
+                slideIndex = slideIndex - 1 + slides.length;
+            }
+            showSlides();
+        }
+
+        // Bắt đầu slideshow tự động
+        function startSlideshow() {
+            // sau 1s sẽ chuyển vị trí
+            checkSlideshow = setInterval(showNextSlide, 1000);
+            showSlides();
+        }
+
+        function stopSlideshow() {
+            clearInterval(checkSlideshow);
+        }
+
+        showSlides();
+
+    </script>
+</body>
+</html>
